@@ -38,7 +38,7 @@ pop-location
 
 #  Get the Splunk Download page itself,  we're gonna scrape it for the link:
 #
-$splunk = Invoke-WebRequest https://www.splunk.com/download/universalforwarder
+$splunk = Invoke-WebRequest https://www.splunk.com/download/universalforwarder -DisableKeepAlive -MaximumRedirection 0
 
 # Look for a link to an MSI package eding with "x64-release.msi".
 # There will be two links, Full Splunk and teh Forwarder.
