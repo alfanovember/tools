@@ -19,6 +19,15 @@ param(
 
 $DebugPreference = "continue"
 
+# Add Splunk.com to trusted sites zone
+
+set-location "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
+set-location ZoneMap\Domains
+new-item splunk.com
+set-location splunk.com
+new-itemproperty . -Name http -Value 2 -Type DWORD
+
+
 #  Get the Splunk Download page itself,  we're gonna scrape it for the link:
 #
 $splunk = Invoke-WebRequest https://www.splunk.com/download/universalforwarder
