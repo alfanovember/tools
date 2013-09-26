@@ -21,12 +21,15 @@ $DebugPreference = "continue"
 
 # Add Splunk.com to trusted sites zone
 
+push-location
+
 set-location "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 set-location ZoneMap\Domains
 new-item splunk.com
 set-location splunk.com
 new-itemproperty . -Name http -Value 2 -Type DWORD
 
+pop-location
 
 #  Get the Splunk Download page itself,  we're gonna scrape it for the link:
 #
