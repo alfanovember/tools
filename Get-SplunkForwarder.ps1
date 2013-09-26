@@ -24,14 +24,34 @@ $DebugPreference = "continue"
 push-location
 
 set-location "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
-push-location ZoneMap\ESCDomains
-new-item splunk.com
-push-location splunk.com
-new-itemproperty . -Name "*" -Value 2 -Type DWORD
-pop-location
-new-item security_powershell_ise.exe
-push-location security_powershell_ise.exe
-new-itemproperty . -Name about -Value 2 -Type DWORD
+
+	push-location ZoneMap\ESCDomains
+
+	new-item splunk.com
+		push-location splunk.com
+		new-itemproperty . -Name "*" -Value 2 -Type DWORD
+	pop-location
+
+	new-item security_powershell_ise.exe
+		push-location security_powershell_ise.exe
+		new-itemproperty . -Name about -Value 2 -Type DWORD
+	pop-location
+
+	new-item //cdn.optimizely.com/js/7177505.js
+		push-location//cdn.optimizely.com/js/7177505.js
+		new-itemproperty . -Name about -Value 2 -Type DWORD
+	pop-location
+
+	new-item googleadservices.com
+		push-location googleadservices.com
+		new-itemproperty . -Name https -Value 2 -Type DWORD
+	pop-location
+
+	new-item google-analytics.com
+		push-location google-analytics.com
+		new-itemproperty . -Name "*" -Value 2 -Type DWORD
+	pop-location
+
 pop-location
 pop-location
 pop-location
