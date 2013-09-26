@@ -34,6 +34,7 @@ push-location security_powershell_ise.exe
 new-itemproperty . -Name about -Value 2 -Type DWORD
 pop-location
 pop-location
+pop-location
 
 #  Get the Splunk Download page itself,  we're gonna scrape it for the link:
 #
