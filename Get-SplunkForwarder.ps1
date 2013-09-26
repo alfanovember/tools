@@ -24,11 +24,15 @@ $DebugPreference = "continue"
 push-location
 
 set-location "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
-set-location ZoneMap\ESCDomains
+push-location ZoneMap\ESCDomains
 new-item splunk.com
-set-location splunk.com
+push-location splunk.com
 new-itemproperty . -Name "*" -Value 2 -Type DWORD
-
+pop-location
+new-item security_powershell_ise.exe
+push-location security_powershell_ise.exe
+new-itemproperty . -Name about -Value 2 -Type DWORD
+pop-location
 pop-location
 
 #  Get the Splunk Download page itself,  we're gonna scrape it for the link:
