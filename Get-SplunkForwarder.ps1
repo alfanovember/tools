@@ -24,10 +24,10 @@ $DebugPreference = "continue"
 push-location
 
 set-location "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
-set-location ZoneMap\Domains
+set-location ZoneMap\ESCDomains
 new-item splunk.com
 set-location splunk.com
-new-itemproperty . -Name http -Value 2 -Type DWORD
+new-itemproperty . -Name "*" -Value 2 -Type DWORD
 
 pop-location
 
