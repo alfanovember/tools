@@ -44,7 +44,7 @@ set-location "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 
 	new-item googleadservices.com
 		push-location googleadservices.com
-		new-itemproperty . -Name https -Value 2 -Type DWORD
+		new-itemproperty . -Name "*" -Value 2 -Type DWORD
 	pop-location
 
 	new-item google-analytics.com
