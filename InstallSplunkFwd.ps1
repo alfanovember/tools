@@ -1,4 +1,9 @@
 
+#
+# Paste into in an elevated Powershell ISE window for reliable use
+#
+
+
 (get-service SplunkForwarder).status
 
 mkdir C:\Install
