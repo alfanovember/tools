@@ -2,7 +2,7 @@
 #  Andy Newell
 #  Sept. 16 2013
 #
-# Downloads the latest Splunk Universal Forwarder to the current directory
+# Downloads the Splunk Universal Forwarder to the current directory
 #
 # Optionally, just print the download link to the pipeline with argument "-link"
 #
@@ -11,12 +11,12 @@
 #  Splunk 6 has been released;  we want to stay on V5 for now.  
 #
 
-# TODO: "set-executionpolicy remotesigned" before proceeding,  then pop the setting back when done
+# TODO: DONE (elsewhere) "set-executionpolicy remotesigned" before proceeding,  then pop the setting back when done
 #
 # TODO: programatically add the Splunk URI to "trusted sites" list.   
 #			Currently shows a modal dialog but does not interfere with script fucntion
-#		Also add test condition before firing the change
-#		redirect output to /dev/nul
+#		DONE Also add test condition before firing the change
+#		DONE Redirect output to /dev/nul
 
  #Requires -Version 3
 
@@ -67,8 +67,8 @@ If (-not(Test-Path -Path "$reg_path\ZoneMap\EscDomains\splunk.com")) {
 
 	# Out of the Registry, and back to where we started:
 	set-location $working_dir
+}
 
-	}
 
 #  Get the Splunk Download page itself,  we're gonna scrape it for the link:
 #
@@ -81,7 +81,6 @@ $splunk = Invoke-WebRequest https://www.splunk.com/page/previous_releases -Disab
 # The forwarder will be the second item in the zero-indexed array:
 # assemble the full URI from that.
 #$suffix = ($splunk.links.innerHTML | Select-String x64-release.msi)[1]
-
 
 $suffix =  $splunk.Links.innerHTML | Select-String -Pattern "^splunkforwarder-5.0.\d-\d+-x64-release.msi" | Sort-Object -Descending | Select-Object -First 1
 
