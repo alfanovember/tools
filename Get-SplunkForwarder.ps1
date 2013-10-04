@@ -18,6 +18,7 @@
 #		Also add test condition before firing the change
 #		redirect output to /dev/nul
 
+ #Requires -Version 3
 
 param(
  [Parameter(Mandatory=$false)] [switch]$link = $false,	#  -link to enable
