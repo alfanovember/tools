@@ -6,7 +6,7 @@
 
 (get-service SplunkForwarder).status
 
-mkdir C:\Install
+if (!(Test-Path C:\Install)) {mkdir C:\Install | Out-Null}
 set-location C:\Install
 push-location
 $EP = get-executionpolicy
