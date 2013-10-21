@@ -112,7 +112,7 @@ if ($link -eq $true) {
 # ~30 Mb takes a moment to download, be patient!
 
 # Install the file..  Silently if Elevated,  otherwise throw a prompt to eleveate, say Yes.
-if ($install -eq $true) {p
+if ($install -eq $true) {
 	if ($link -eq $true) {
 		Write-Output "Error: Cannot specify -link in combination with -install; nothing to do."
 	}else{
