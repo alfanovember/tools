@@ -11,6 +11,10 @@
 #  Splunk 6 has been released;  we want to stay on V5 for now.  
 #
 
+# Edit  4.17.204
+#  we are on Splunk 6 now.  Older v5 forwarder is deprecated, but still works
+
+
 # TODO: DONE (elsewhere) "set-executionpolicy remotesigned" before proceeding,  then pop the setting back when done
 #
 # TODO: programatically add the Splunk URI to "trusted sites" list.   
@@ -72,9 +76,9 @@ If (-not(Test-Path -Path "$reg_path\ZoneMap\EscDomains\splunk.com")) {
 
 #  Get the Splunk Download page itself,  we're gonna scrape it for the link:
 #
-#$splunk = Invoke-WebRequest https://www.splunk.com/download/universalforwarder -DisableKeepAlive -MaximumRedirection 0
+$splunk = Invoke-WebRequest https://www.splunk.com/download/universalforwarder -DisableKeepAlive -MaximumRedirection 0
 
-$splunk = Invoke-WebRequest https://www.splunk.com/page/previous_releases -DisableKeepAlive -MaximumRedirection 0
+#$splunk = Invoke-WebRequest https://www.splunk.com/page/previous_releases -DisableKeepAlive -MaximumRedirection 0
 
 # Look for a link to an MSI package eding with "x64-release.msi".
 # There will be two links, Full Splunk and teh Forwarder.
@@ -82,8 +86,9 @@ $splunk = Invoke-WebRequest https://www.splunk.com/page/previous_releases -Disab
 # assemble the full URI from that.
 #$suffix = ($splunk.links.innerHTML | Select-String x64-release.msi)[1]
 
-$suffix =  $splunk.Links.innerHTML | Select-String -Pattern "^splunkforwarder-5.0.\d-\d+-x64-release.msi" | Sort-Object -Descending | Select-Object -First 1
+#$suffix =  $splunk.Links.innerHTML | Select-String -Pattern "^splunkforwarder-5.0.\d-\d+-x64-release.msi" | Sort-Object -Descending | Select-Object -First 1
 
+$suffix =  $splunk.Links.innerHTML | Select-String -Pattern "^splunkforwarder-6.0.\d-\d+-x64-release.msi" | Sort-Object -Descending | Select-Object -First 1
 
 # Pick out the actual version number:
 #$version = ($splunk.links.innerHTML | Select-String x64-release.msi)[1].tostring().Split("-")[1]

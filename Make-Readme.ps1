@@ -30,16 +30,18 @@ $dir = gci "C:\Scripts\Splunk\git\deployment-apps\"
 
 foreach ($app in $dir) { 
 
+# if existing readme file, rename with datestamp
 if (test-path $app\README.txt) {$date=(Get-Date -f u).Split()[0]; Move-Item $app\README.txt -Destination $app\README.$date -WhatIf }
 
 
+# Look for "Monitor" stanzas, and add them to the README file
 if (Test-Path $app\local\inputs.conf) {
 	Get-Content $app\local\inputs.conf | Select-String -Pattern '\[monitor','\[script' | Out-File -FilePath $app\README.txt -Encoding ascii -WhatIf
 	}
-}
 
-foreach ($app in $dir) { 
-	if (Test-Path $app\local\wmi.conf) {
+# Look for "WMI" stanzas, and add them to the README file
+if (Test-Path $app\local\wmi.conf) {
 		Get-Content $app\local\wmi.conf | Select-String -Pattern '\[wmi' | Out-File -FilePath $app\README.txt -Append -Encoding ascii -whatif
 	}
+
 }
